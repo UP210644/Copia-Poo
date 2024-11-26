@@ -1,2 +1,1 @@
-# Copia-Poo
-Copia para hacer todo lo que quiera 
+# 2024-3-ISC06-08-Sistema-de-Soporte-Tecnico
