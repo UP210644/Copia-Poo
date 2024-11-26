@@ -1,7 +1,17 @@
+// JavaScript source code
+// pages/index.js
 "use client";
 
 import React, { useState } from "react";
-import { Container, Typography, Button, Box, TextField, CircularProgress } from "@mui/material";
+import { useRouter } from "next/navigation";
+import {
+  Container,
+  Typography,
+  Button,
+  Box,
+  TextField,
+  CircularProgress,
+} from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme({
@@ -18,14 +28,14 @@ const theme = createTheme({
   },
 });
 
-function App() {
+function LoginPage() {
   const [employeeNumber, setEmployeeNumber] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleLogin = async () => {
-
     setLoading(true);
     try {
       const response = await fetch("/api/login", {
@@ -40,9 +50,14 @@ function App() {
       setLoading(false);
 
       if (response.ok) {
-        window.location.href = `/dashboard?token=${data.token}`;
+        // Guardar el token en localStorage
+        localStorage.setItem("token", data.token);
+        // Redireccionar al dashboard
+        router.push("/dashboard");
       } else {
-        setError(data.message || "No se pudo iniciar sesiÃ³n. IntÃ©ntalo de nuevo.");
+        setError(
+          data.message || "No se pudo iniciar sesión. Inténtalo de nuevo."
+        );
       }
     } catch (err) {
       setLoading(false);
@@ -74,7 +89,7 @@ function App() {
           }}
         >
           <Typography variant="h4" color="textPrimary" gutterBottom>
-            Soporte tÃ©cnico
+            Soporte técnico
           </Typography>
           <Typography variant="body1" color="textSecondary" gutterBottom>
             Ingresa los siguientes datos para acceder.
@@ -82,17 +97,19 @@ function App() {
           <Box mt={2}>
             <TextField
               fullWidth
-              label="NÃºmero de nÃ³mina"
+              label="Número de nómina"
               variant="outlined"
               margin="normal"
               value={employeeNumber}
               onChange={(e) => setEmployeeNumber(e.target.value)}
               error={!!error}
-              helperText={error && "Por favor, revisa los datos ingresados."}
+              helperText={
+                error && "Por favor, revisa los datos ingresados."
+              }
             />
             <TextField
               fullWidth
-              label="ContraseÃ±a"
+              label="Contraseña"
               type="password"
               variant="outlined"
               margin="normal"
@@ -118,4 +135,4 @@ function App() {
   );
 }
 
-export default App;
+export default LoginPage;
