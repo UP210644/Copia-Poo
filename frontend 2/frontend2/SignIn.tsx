@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -16,8 +15,8 @@ import MuiCard from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
 import ForgotPassword from "./ForgotPassword";
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from "./CustomIcons";
-import AppTheme from "./theme/AppTheme";
-import ColorModeSelect from "./theme/ColorModeSelect";
+import AppTheme from "./shared-theme/AppTheme";
+import ColorModeSelect from "./shared-theme/ColorModeSelect";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
