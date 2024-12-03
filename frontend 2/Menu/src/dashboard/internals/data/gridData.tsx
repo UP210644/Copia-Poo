@@ -51,14 +51,6 @@ export const columns: GridColDef[] = [
     minWidth: 80,
   },
   {
-    field: 'eventCount',
-    headerName: 'Event Count',
-    headerAlign: 'right',
-    align: 'right',
-    flex: 1,
-    minWidth: 100,
-  },
-  {
     field: 'viewsPerUser',
     headerName: 'Views per User',
     headerAlign: 'right',
